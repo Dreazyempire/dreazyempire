@@ -32,18 +32,23 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-mainbg text-textprimary">
-      {/* NAVIGATION */}
-      <nav className="flex items-center justify-between px-6 py-5 border-b border-borderc">
-        <span className="text-lg font-bold tracking-tight">Dreazy Empire</span>
+      <nav className="flex items-center justify-between px-6 py-4 border-b border-borderc">
+        <div className="flex items-center gap-3">
+          <img
+            src="https://res.cloudinary.com/aobufb36/image/upload/v1790405860/330421.jpg"
+            alt="Dreazy Empire logo"
+            className="w-9 h-9 rounded-md object-cover"
+          />
+          <span className="text-lg font-bold tracking-tight">Dreazy Empire</span>
+        </div>
         <a href="#contact" className="text-sm border border-borderc rounded-full px-4 py-2 hover:border-accent hover:text-accent transition">
           Let's work
         </a>
       </nav>
 
-      {/* HERO — typographic, poster-style */}
       <section className="px-6 pt-16 pb-20 border-b border-borderc">
         <div className="max-w-5xl mx-auto">
-          <h1 className="font-bold leading-[0.9] tracking-tight text-[15vw] md:text-8xl">
+          <h1 className="font-bold leading-[0.9] tracking-tight text-[15vw] md:text-8xl bg-gradient-to-br from-highlight via-accent to-accent2 bg-clip-text text-transparent">
             Dreazy
             <br />
             <span className="block ml-[10vw] md:ml-28">Empire</span>
@@ -65,10 +70,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* PORTFOLIO (filterable) */}
       <PortfolioSection projects={projects} />
 
-      {/* ABOUT */}
       <section id="about" className="px-6 py-20 bg-secondarybg border-b border-borderc">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
           <img
@@ -77,7 +80,9 @@ export default async function Home() {
             className="w-48 h-48 rounded-full object-cover border-2 border-accent flex-shrink-0"
           />
           <div>
-            <h2 className="text-2xl font-bold mb-4">About Me</h2>
+            <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-highlight to-accent2 bg-clip-text text-transparent inline-block">
+              About Me
+            </h2>
             <p className="text-textsecondary leading-relaxed mb-4">
               I'm a Content Editor, Media Host, and Graphic Designer working at the intersection of media, design, technology, and Web3.
             </p>
@@ -85,7 +90,7 @@ export default async function Home() {
               I create content, host conversations, and design visual experiences that help ideas, brands, and projects communicate clearly and connect with their audience.
             </p>
             <p className="text-textsecondary leading-relaxed mb-4">
-              I'm passionate about storytelling, creativity, emerging technology, and building things that have real-world impact.
+              I'm passionate about creativity, emerging technology, and building things that have real-world impact.
             </p>
             <p className="text-textsecondary leading-relaxed">
               Founder of Asset Oracle, a project exploring the intersection of real-world information, decentralized verification, and on-chain intelligence.
@@ -94,10 +99,11 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* SERVICES — editorial index list */}
       <section id="services" className="px-6 py-20 border-b border-borderc">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold mb-10">Services</h2>
+          <h2 className="text-2xl font-bold mb-10 bg-gradient-to-r from-highlight to-accent2 bg-clip-text text-transparent inline-block">
+            Services
+          </h2>
           <div className="divide-y divide-borderc">
             {services.map((s) => (
               <div
@@ -112,10 +118,9 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* CLOSING */}
       <section id="contact" className="px-6 py-24">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-xl">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-xl bg-gradient-to-br from-highlight via-accent to-accent2 bg-clip-text text-transparent">
             Let's create something that connects.
           </h2>
           <p className="text-textsecondary mt-6 max-w-md">
@@ -135,7 +140,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="px-6 py-8 text-center text-textsecondary text-sm border-t border-borderc">
         © {new Date().getFullYear()} Dreazy Empire. All rights reserved.
       </footer>
