@@ -48,7 +48,7 @@ export default async function Home() {
 
       <section className="px-6 pt-16 pb-20 border-b border-borderc">
         <div className="max-w-5xl mx-auto">
-          <h1 className="font-bold leading-[0.9] tracking-tight text-[15vw] md:text-8xl bg-gradient-to-br from-highlight via-accent to-accent2 bg-clip-text text-transparent">
+          <h1 className="font-bold leading-[0.9] tracking-tight text-[15vw] md:text-8xl bg-gradient-to-br from-highlight via-accent to-accent2 bg-clip-text text-transparent animate-gradient">
             Dreazy
             <br />
             <span className="block ml-[10vw] md:ml-28">Empire</span>
