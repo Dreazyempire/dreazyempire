@@ -97,7 +97,7 @@ export default function Home() {
           Interested in working with me? Reach out below.
         </p>
         <a
-          href="mailto:hello@dreazyempire.com"
+          href="mailto:dreazyempire@gmail.com"
           className="inline-block px-6 py-3 rounded-full bg-accent text-mainbg font-semibold hover:bg-highlight transition"
         >
           Contact Me
