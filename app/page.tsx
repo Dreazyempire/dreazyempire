@@ -1,4 +1,26 @@
-export default function Home() {
+import { supabase } from "@/lib/supabaseClient";
+import Link from "next/link";
+
+type Project = {
+  id: string;
+  title: string;
+  categories: { name: string } | null;
+  project_media: { url: string; media_type: string }[];
+};
+
+async function getProjects() {
+  const { data } = await supabase
+    .from("projects")
+    .select("id, title, categories(name), project_media(url, media_type)")
+    .order("created_at", { ascending: false });
+  return (data as unknown as Project[]) || [];
+}
+
+export const revalidate = 0;
+
+export default async function Home() {
+  const projects = await getProjects();
+
   return (
     <main className="min-h-screen bg-mainbg text-textprimary">
       {/* NAVIGATION */}
@@ -44,13 +66,37 @@ export default function Home() {
           ))}
         </div>
 
-        {/* PLACEHOLDER PROJECT GRID */}
+        {/* REAL PROJECT GRID */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-5xl mx-auto">
-          {[1,2,3].map((i) => (
-            <div key={i} className="bg-card border border-borderc rounded-xl aspect-square flex items-center justify-center text-textsecondary">
-              Project coming soon
-            </div>
-          ))}
+          {projects.length === 0 && (
+            <p className="text-textsecondary col-span-3 text-center">
+              Portfolio launching soon — check back shortly.
+            </p>
+          )}
+          {projects.map((p) => {
+            const cover = p.project_media?.[0];
+            return (
+              <Link
+                key={p.id}
+                href={`/project/${p.id}`}
+                className="bg-card border border-borderc rounded-xl aspect-square overflow-hidden relative group"
+              >
+                {cover ? (
+                  cover.media_type === "image" ? (
+                    <img src={cover.url} alt={p.title} className="w-full h-full object-cover group-hover:opacity-80 transition" />
+                  ) : (
+                    <video src={cover.url} className="w-full h-full object-cover group-hover:opacity-80 transition" muted />
+                  )
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-textsecondary">No media</div>
+                )}
+                <div className="absolute bottom-0 left-0 right-0 bg-mainbg/80 px-3 py-2">
+                  <p className="text-sm font-semibold truncate">{p.title}</p>
+                  <p className="text-xs text-textsecondary truncate">{p.categories?.name}</p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
