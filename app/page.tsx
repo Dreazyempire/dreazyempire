@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
-import Link from "next/link";
+import PortfolioSection from "@/components/PortfolioSection";
 
 type Project = {
   id: string;
@@ -55,50 +55,8 @@ export default async function Home() {
         </a>
       </section>
 
-      {/* CATEGORIES */}
-      <section id="work" className="px-6 py-16">
-        <h2 className="text-2xl font-bold mb-6 text-center">Portfolio Categories</h2>
-        <div className="flex flex-wrap justify-center gap-3">
-          {["All Work","Web3 & Crypto","Social Media Designs","3D Designs","Branding","News & Editorial","Posters & Campaigns","Motion Graphics","Video"].map((cat) => (
-            <span key={cat} className="px-4 py-2 rounded-full border border-borderc text-sm text-textsecondary hover:border-accent hover:text-accent transition cursor-pointer">
-              {cat}
-            </span>
-          ))}
-        </div>
-
-        {/* REAL PROJECT GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-5xl mx-auto">
-          {projects.length === 0 && (
-            <p className="text-textsecondary col-span-3 text-center">
-              Portfolio launching soon — check back shortly.
-            </p>
-          )}
-          {projects.map((p) => {
-            const cover = p.project_media?.[0];
-            return (
-              <Link
-                key={p.id}
-                href={`/project/${p.id}`}
-                className="bg-card border border-borderc rounded-xl aspect-square overflow-hidden relative group"
-              >
-                {cover ? (
-                  cover.media_type === "image" ? (
-                    <img src={cover.url} alt={p.title} className="w-full h-full object-cover group-hover:opacity-80 transition" />
-                  ) : (
-                    <video src={cover.url} className="w-full h-full object-cover group-hover:opacity-80 transition" muted />
-                  )
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-textsecondary">No media</div>
-                )}
-                <div className="absolute bottom-0 left-0 right-0 bg-mainbg/80 px-3 py-2">
-                  <p className="text-sm font-semibold truncate">{p.title}</p>
-                  <p className="text-xs text-textsecondary truncate">{p.categories?.name}</p>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
+      {/* PORTFOLIO (filterable) */}
+      <PortfolioSection projects={projects} />
 
       {/* ABOUT */}
       <section id="about" className="px-6 py-20 bg-secondarybg">
@@ -106,12 +64,21 @@ export default async function Home() {
           <img
             src="https://res.cloudinary.com/aobufb36/image/upload/v1790401456/file_00000000827881f496906b0227b2a77f.png"
             alt="Dreazy Empire"
-            className="w-48 h-48 rounded-full object-cover border-2 border-accent"
+            className="w-48 h-48 rounded-full object-cover border-2 border-accent flex-shrink-0"
           />
           <div>
-            <h2 className="text-2xl font-bold mb-4">About</h2>
+            <h2 className="text-2xl font-bold mb-4">About Me</h2>
+            <p className="text-textsecondary leading-relaxed mb-4">
+              I'm a Content Editor, Media Host, and Graphic Designer working at the intersection of media, design, technology, and Web3.
+            </p>
+            <p className="text-textsecondary leading-relaxed mb-4">
+              I create content, host conversations, and design visual experiences that help ideas, brands, and projects communicate clearly and connect with their audience.
+            </p>
+            <p className="text-textsecondary leading-relaxed mb-4">
+              I'm passionate about storytelling, creativity, emerging technology, and building things that have real-world impact.
+            </p>
             <p className="text-textsecondary leading-relaxed">
-              I'm a graphic designer, content editor and media creator with a strong focus on Web3, crypto, digital media and online communities. I design visuals that help brands and creators communicate clearly and stand out.
+              Founder of Asset Oracle, a project exploring the intersection of real-world information, decentralized verification, and on-chain intelligence.
             </p>
           </div>
         </div>
