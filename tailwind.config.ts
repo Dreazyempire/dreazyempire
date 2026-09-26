@@ -18,6 +18,9 @@ const config: Config = {
         card: "#102F3A",
         borderc: "#1D6675",
       },
+      fontFamily: {
+        sans: ["var(--font-bricolage)"],
+      },
     },
   },
   plugins: [],
