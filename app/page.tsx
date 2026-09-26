@@ -115,6 +115,29 @@ export default async function Home() {
         >
           Contact Me
         </a>
+
+        <div className="flex justify-center gap-6 mt-8">
+          <a
+            href="https://x.com/dreazyempire"
+            target="_blank"
+            aria-label="X (Twitter)"
+            className="w-12 h-12 flex items-center justify-center rounded-full border border-borderc hover:border-accent transition"
+          >
+            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-textprimary">
+              <path d="M18.244 2H21.5l-7.51 8.59L23 22h-6.828l-5.35-6.99L4.7 22H1.44l8.03-9.19L1 2h6.914l4.84 6.4L18.244 2Zm-1.196 18h1.833L7.03 3.9H5.06L17.048 20Z"/>
+            </svg>
+          </a>
+          <a
+            href="https://t.me/dreazyempire"
+            target="_blank"
+            aria-label="Telegram"
+            className="w-12 h-12 flex items-center justify-center rounded-full border border-borderc hover:border-accent transition"
+          >
+            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-textprimary">
+              <path d="M21.9 3.6 2.4 11.1c-.9.35-.9 1.66.01 1.99l4.7 1.6 1.83 5.65c.24.75 1.19.96 1.75.4l2.63-2.55 4.97 3.65c.7.5 1.7.13 1.9-.7l3.28-15.1c.24-1.1-.83-2.03-1.86-1.44ZM8.9 14.1l9.3-6.9-7.6 8.2-.3 3.3-1.4-4.6Z"/>
+            </svg>
+          </a>
+        </div>
       </section>
 
       {/* FOOTER */}
