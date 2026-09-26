@@ -9,6 +9,9 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   title: "Dreazy Empire | Graphic Designer & Visual Content Creator",
+  icons: {
+    icon: "https://res.cloudinary.com/aobufb36/image/upload/v1790405860/330421.jpg",
+  },
   description:
     "Dreazy Empire — graphic design and visual content for Web3, digital brands, media platforms and online communities.",
   openGraph: {
