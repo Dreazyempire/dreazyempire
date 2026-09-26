@@ -28,31 +28,47 @@ export default async function Home() {
         <span className="text-xl font-bold tracking-wide">
           DREAZY <span className="text-accent">EMPIRE</span>
         </span>
-        <div className="hidden md:flex gap-6 text-sm text-textsecondary">
-          <a href="#work">Work</a>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
-        </div>
+        <a href="#contact" className="text-sm border border-borderc rounded-full px-4 py-2 hover:border-accent hover:text-accent transition">
+          Let's work
+        </a>
       </nav>
 
       {/* HERO */}
-      <section className="text-center px-6 py-24">
-        <h1 className="text-4xl md:text-6xl font-bold">
-          Dreazy <span className="text-accent">Empire</span>
+      <section className="text-center px-6 py-20 relative overflow-hidden">
+        <p className="text-accent text-xs tracking-widest font-semibold mb-4">
+          WEB3 · GRAPHIC DESIGN · MEDIA · CRYPTO
+        </p>
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+          I turn ideas into <br />
+          <span className="text-accent">visual stories.</span>
         </h1>
-        <p className="mt-4 text-lg text-textsecondary">
-          Graphic Designer • Visual Content Creator
-        </p>
         <p className="mt-6 max-w-xl mx-auto text-textsecondary">
-          I create visual content for Web3, digital brands, media platforms and online communities.
+          I'm Dreazy — a graphic designer, content editor and media creator focused on Web3, digital brands, media platforms and online communities.
         </p>
-        <a
-          href="#work"
-          className="inline-block mt-8 px-6 py-3 rounded-full bg-accent text-mainbg font-semibold hover:bg-highlight transition"
-        >
-          View My Work
-        </a>
+        <div className="flex justify-center gap-4 mt-8 flex-wrap">
+          <a
+            href="#work"
+            className="px-6 py-3 rounded-full bg-accent text-mainbg font-semibold hover:bg-highlight transition"
+          >
+            Explore my work →
+          </a>
+          <a
+            href="#contact"
+            className="px-6 py-3 rounded-full border border-borderc hover:border-accent hover:text-accent transition"
+          >
+            Start a project
+          </a>
+        </div>
+
+        {/* ANIMATED CIRCLE GRAPHIC */}
+        <div className="relative w-64 h-64 mx-auto mt-16">
+          <div className="absolute inset-0 rounded-full border border-accent/30 animate-pulse" />
+          <div className="absolute inset-6 rounded-full border border-accent/50" />
+          <div className="absolute inset-16 rounded-full bg-accent/20 blur-xl" />
+          <div className="absolute inset-20 rounded-full bg-accent flex items-center justify-center text-mainbg font-bold text-lg shadow-[0_0_40px_theme(colors.accent)]">
+            Dreazy
+          </div>
+        </div>
       </section>
 
       {/* PORTFOLIO (filterable) */}
@@ -87,55 +103,54 @@ export default async function Home() {
       {/* SERVICES */}
       <section id="services" className="px-6 py-20">
         <h2 className="text-2xl font-bold mb-10 text-center">Services</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
           {[
-            "Web3 & Crypto Visuals",
-            "Social Media Design",
-            "Branding & Identity",
-            "Motion Graphics",
-            "Posters & Campaigns",
-            "News & Editorial Design",
+            { title: "WEB3 & CRYPTO", desc: "Brand storytelling for on-chain projects" },
+            { title: "SOCIAL MEDIA", desc: "Scroll-stopping content design" },
+            { title: "BRANDING", desc: "Identity systems that stand out" },
+            { title: "MOTION", desc: "Cinematic motion graphics" },
+            { title: "POSTERS", desc: "Campaign & event visuals" },
+            { title: "EDITORIAL", desc: "News & editorial layouts" },
           ].map((s) => (
-            <div key={s} className="bg-card border border-borderc rounded-xl p-6 text-center hover:border-accent transition">
-              {s}
+            <div key={s.title} className="border border-borderc rounded-xl p-6 hover:border-accent transition text-left">
+              <p className="text-accent font-bold text-sm tracking-wide">{s.title}</p>
+              <p className="text-textsecondary text-sm mt-2">{s.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section id="contact" className="px-6 py-20 bg-secondarybg text-center">
-        <h2 className="text-2xl font-bold mb-4">Let's Work Together</h2>
-        <p className="text-textsecondary mb-6">
-          Interested in working with me? Reach out below.
+      {/* CLOSING CTA */}
+      <section id="contact" className="px-6 py-24 text-center">
+        <p className="text-accent text-xs tracking-widest font-semibold mb-4">HAVE AN IDEA?</p>
+        <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+          Let's make something <br />
+          <span className="text-accent">people remember.</span>
+        </h2>
+        <p className="text-textsecondary mt-6 max-w-lg mx-auto">
+          Have a project, campaign or story you want brought to life? Let's create something meaningful.
         </p>
-        <a
-          href="mailto:dreazyempire@gmail.com"
-          className="inline-block px-6 py-3 rounded-full bg-accent text-mainbg font-semibold hover:bg-highlight transition"
-        >
-          Contact Me
-        </a>
 
-        <div className="flex justify-center gap-6 mt-8">
+        <div className="flex justify-center gap-4 mt-8 flex-wrap">
+          <a
+            href="mailto:dreazyempire@gmail.com"
+            className="px-6 py-3 rounded-full bg-accent text-mainbg font-semibold hover:bg-highlight transition"
+          >
+            Email Me
+          </a>
           <a
             href="https://x.com/dreazyempire"
             target="_blank"
-            aria-label="X (Twitter)"
-            className="w-12 h-12 flex items-center justify-center rounded-full border border-borderc hover:border-accent transition"
+            className="px-6 py-3 rounded-full border border-borderc hover:border-accent hover:text-accent transition"
           >
-            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-textprimary">
-              <path d="M18.244 2H21.5l-7.51 8.59L23 22h-6.828l-5.35-6.99L4.7 22H1.44l8.03-9.19L1 2h6.914l4.84 6.4L18.244 2Zm-1.196 18h1.833L7.03 3.9H5.06L17.048 20Z"/>
-            </svg>
+            X / Twitter
           </a>
           <a
             href="https://t.me/dreazyempire"
             target="_blank"
-            aria-label="Telegram"
-            className="w-12 h-12 flex items-center justify-center rounded-full border border-borderc hover:border-accent transition"
+            className="px-6 py-3 rounded-full border border-borderc hover:border-accent hover:text-accent transition"
           >
-            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-textprimary">
-              <path d="M21.9 3.6 2.4 11.1c-.9.35-.9 1.66.01 1.99l4.7 1.6 1.83 5.65c.24.75 1.19.96 1.75.4l2.63-2.55 4.97 3.65c.7.5 1.7.13 1.9-.7l3.28-15.1c.24-1.1-.83-2.03-1.86-1.44ZM8.9 14.1l9.3-6.9-7.6 8.2-.3 3.3-1.4-4.6Z"/>
-            </svg>
+            Telegram
           </a>
         </div>
       </section>
