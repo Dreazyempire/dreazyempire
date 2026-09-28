@@ -21,8 +21,7 @@ async function getProjects() {
 export const revalidate = 0;
 
 // Paste your Asset Oracle website link between the quotes to show the button
-const ASSET_ORACLE_URL = "";
-
+const ASSET_ORACLE_URL = "https://assetoracleapp.xyz";
 const services = [
   { name: "Content Editing", desc: "Turning raw ideas into clear, engaging content." },
   { name: "Media Hosting", desc: "Hosting AMAs, X Spaces and conversations for digital communities." },
