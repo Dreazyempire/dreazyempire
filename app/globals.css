@@ -2,18 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
 body {
   background-color: #071A24;
   color: #F2FCFF;
 }
 
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 1.5s linear infinite;
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fade-up 0.8s ease-out both;
+}
+.fade-up-2 {
+  animation: fade-up 0.8s ease-out 0.15s both;
+}
+.fade-up-3 {
+  animation: fade-up 0.8s ease-out 0.3s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .fade-up-2, .fade-up-3 { animation: none; }
+  html { scroll-behavior: auto; }
 }
