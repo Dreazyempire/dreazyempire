@@ -1,9 +1,11 @@
 import { supabase } from "@/lib/supabaseClient";
+import Navbar from "@/components/Navbar";
 import PortfolioSection from "@/components/PortfolioSection";
 
 type Project = {
   id: string;
   title: string;
+  description: string | null;
   categories: { name: string } | null;
   project_media: { url: string; media_type: string }[];
 };
@@ -11,137 +13,176 @@ type Project = {
 async function getProjects() {
   const { data } = await supabase
     .from("projects")
-    .select("id, title, categories(name), project_media(url, media_type)")
+    .select("id, title, description, categories(name), project_media(url, media_type)")
     .order("created_at", { ascending: false });
   return (data as unknown as Project[]) || [];
 }
 
 export const revalidate = 0;
 
+// Paste your Asset Oracle website link between the quotes to show the button
+const ASSET_ORACLE_URL = "";
+
 const services = [
-  { name: "Content Editing", desc: "Editing and shaping content across platforms and formats" },
-  { name: "Media Hosting", desc: "Hosting conversations and media for digital audiences" },
-  { name: "Web3 & Crypto Design", desc: "Visual design for on-chain projects and communities" },
-  { name: "Social Media Design", desc: "Design built for feeds, platforms and campaigns" },
-  { name: "Branding & Identity", desc: "Marks and systems that hold up anywhere" },
-  { name: "Motion Graphics", desc: "Short-form animation and video content" },
+  { name: "Content Editing", desc: "Turning raw ideas into clear, engaging content." },
+  { name: "Media Hosting", desc: "Hosting AMAs, X Spaces and conversations for digital communities." },
+  { name: "Web3 & Crypto Design", desc: "Visuals for protocols, communities, campaigns and crypto brands." },
+  { name: "Social Media Design", desc: "Scroll-stopping graphics designed for digital platforms." },
+  { name: "Branding & Identity", desc: "Building visual identities that make brands recognizable." },
+  { name: "Motion Graphics", desc: "Short-form animations and visual content for digital campaigns." },
 ];
 
 export default async function Home() {
   const projects = await getProjects();
 
   return (
-    <main className="min-h-screen bg-mainbg text-textprimary">
-      <nav className="flex items-center justify-between px-6 py-4 border-b border-borderc">
-        <div className="flex items-center gap-3">
-          <img
-            src="https://res.cloudinary.com/aobufb36/image/upload/v1790405860/330421.jpg"
-            alt="Dreazy Empire logo"
-            className="w-9 h-9 rounded-md object-cover"
-          />
-          <span className="text-lg font-bold tracking-tight">Dreazy Empire</span>
-        </div>
-        <a href="#contact" className="text-sm border border-borderc rounded-full px-4 py-2 hover:border-accent hover:text-accent transition">
-          Let's work
-        </a>
-      </nav>
+    <main id="top" className="min-h-screen bg-mainbg text-textprimary">
+      <Navbar />
 
-      <section className="px-6 pt-16 pb-20 border-b border-borderc">
-        <div className="max-w-5xl mx-auto">
-          <h1 className="font-bold leading-[0.9] tracking-tight text-[15vw] md:text-8xl bg-gradient-to-br from-highlight via-accent to-accent2 bg-clip-text text-transparent animate-gradient">
+      {/* HERO */}
+      <section className="px-6 pt-16 pb-20 md:pt-28 md:pb-28">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="fade-up font-bold tracking-tight leading-[0.95] text-[17vw] md:text-9xl">
             Dreazy
             <br />
-            <span className="block ml-[10vw] md:ml-28">Empire</span>
+            Empire
           </h1>
-
-          <div className="mt-10 pt-6 border-t border-borderc flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <p className="max-w-md text-textsecondary leading-relaxed">
-              Content editor, media host and graphic designer working across Web3, digital brands and online communities.
-            </p>
-            <div className="flex gap-4">
-              <a href="#work" className="px-5 py-3 bg-accent text-mainbg font-semibold rounded-full hover:bg-highlight transition">
-                View my work
-              </a>
-              <a href="#contact" className="px-5 py-3 border border-borderc rounded-full hover:border-accent hover:text-accent transition">
-                Start a project
-              </a>
-            </div>
+          <p className="fade-up-2 mt-6 text-2xl md:text-4xl font-semibold text-accent">
+            Content. Media. Design.
+          </p>
+          <p className="fade-up-3 mt-5 max-w-lg text-textsecondary text-lg leading-relaxed">
+            I create content, design visual experiences and host conversations for digital brands, Web3 projects and online communities.
+          </p>
+          <div className="fade-up-3 flex flex-wrap gap-3 mt-8">
+            <a
+              href="#work"
+              className="px-6 py-3.5 bg-accent text-mainbg font-semibold rounded-full hover:bg-highlight transition"
+            >
+              View My Work
+            </a>
+            <a
+              href="#contact"
+              className="px-6 py-3.5 border border-borderc rounded-full hover:border-accent hover:text-accent transition"
+            >
+              Start a Project
+            </a>
           </div>
         </div>
       </section>
 
+      {/* SELECTED WORK + FILTERS */}
       <PortfolioSection projects={projects} />
 
-      <section id="about" className="px-6 py-20 bg-secondarybg border-b border-borderc">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
-          <img
-            src="https://res.cloudinary.com/aobufb36/image/upload/v1790401456/file_00000000827881f496906b0227b2a77f.png"
-            alt="Dreazy Empire"
-            className="w-48 h-48 rounded-full object-cover border-2 border-accent flex-shrink-0"
-          />
-          <div>
-            <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-highlight to-accent2 bg-clip-text text-transparent inline-block">
-              About Me
-            </h2>
-            <p className="text-textsecondary leading-relaxed mb-4">
-              I'm a Content Editor, Media Host, and Graphic Designer working at the intersection of media, design, technology, and Web3.
-            </p>
-            <p className="text-textsecondary leading-relaxed mb-4">
-              I create content, host conversations, and design visual experiences that help ideas, brands, and projects communicate clearly and connect with their audience.
-            </p>
-            <p className="text-textsecondary leading-relaxed mb-4">
-              I'm passionate about creativity, emerging technology, and building things that have real-world impact.
-            </p>
-            <p className="text-textsecondary leading-relaxed">
-              Founder of Asset Oracle, a project exploring the intersection of real-world information, decentralized verification, and on-chain intelligence.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" className="px-6 py-20 border-b border-borderc">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold mb-10 bg-gradient-to-r from-highlight to-accent2 bg-clip-text text-transparent inline-block">
-            Services
-          </h2>
-          <div className="divide-y divide-borderc">
+      {/* SERVICES */}
+      <section id="services" className="px-6 py-20 md:py-28 border-t border-borderc">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">What I Do</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
             {services.map((s) => (
               <div
                 key={s.name}
-                className="flex flex-col md:flex-row md:items-baseline md:justify-between py-5 group"
+                className="bg-card border border-borderc rounded-xl p-6 hover:border-accent transition"
               >
-                <p className="text-lg font-semibold group-hover:text-accent transition">{s.name}</p>
-                <p className="text-textsecondary text-sm mt-1 md:mt-0 md:max-w-xs md:text-right">{s.desc}</p>
+                <h3 className="font-semibold text-lg">{s.name}</h3>
+                <p className="text-textsecondary text-sm mt-2 leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="contact" className="px-6 py-24">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-xl bg-gradient-to-br from-highlight via-accent to-accent2 bg-clip-text text-transparent">
+      {/* ABOUT */}
+      <section id="about" className="px-6 py-20 md:py-28 bg-secondarybg">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-10 md:gap-16 items-start">
+          <img
+            src="https://res.cloudinary.com/aobufb36/image/upload/v1790401456/file_00000000827881f496906b0227b2a77f.png"
+            alt="Dreazy Empire"
+            className="w-full max-w-xs md:w-72 rounded-xl object-cover border border-borderc"
+          />
+          <div>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">About Me</h2>
+            <div className="mt-6 space-y-4 text-textsecondary leading-relaxed max-w-xl">
+              <p>
+                I'm a Content Editor, Media Host and Graphic Designer working across media, design, technology and Web3.
+              </p>
+              <p>
+                I create content, design visual experiences and host conversations that help brands and projects communicate clearly with their audiences.
+              </p>
+              <p>
+                I'm passionate about creativity, emerging technology and building ideas with real-world impact.
+              </p>
+              <p>
+                I'm also the founder of Asset Oracle, a project exploring real-world information, decentralized verification and on-chain intelligence.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BUILDING ASSET ORACLE */}
+      <section className="px-6 py-16 md:py-20">
+        <div className="max-w-5xl mx-auto border border-borderc rounded-2xl p-8 md:p-12 bg-card">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Building Asset Oracle</h2>
+          <p className="text-textsecondary mt-3 max-w-lg leading-relaxed">
+            Exploring the intersection of real-world information, decentralized verification and on-chain intelligence.
+          </p>
+          {ASSET_ORACLE_URL && (
+            <a
+              href={ASSET_ORACLE_URL}
+              target="_blank"
+              className="inline-block mt-6 text-accent font-semibold hover:text-highlight transition"
+            >
+              Explore Asset Oracle →
+            </a>
+          )}
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section id="contact" className="px-6 py-20 md:py-28 border-t border-borderc">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight max-w-2xl">
             Let's create something that connects.
           </h2>
-          <p className="text-textsecondary mt-6 max-w-md">
-            Have a project, campaign or piece of content you want brought to life? Reach out below.
+          <p className="text-textsecondary mt-6 max-w-md text-lg">
+            Have a project, campaign or idea you want to bring to life? Let's work.
           </p>
-          <div className="flex flex-wrap gap-6 mt-8 text-sm">
-            <a href="mailto:dreazyempire@gmail.com" className="underline underline-offset-4 hover:text-accent transition">
+          <div className="flex flex-wrap gap-3 mt-8">
+            <a
+              href="mailto:dreazyempire@gmail.com"
+              className="px-6 py-3.5 bg-accent text-mainbg font-semibold rounded-full hover:bg-highlight transition"
+            >
               Email
             </a>
-            <a href="https://x.com/dreazyempire" target="_blank" className="underline underline-offset-4 hover:text-accent transition">
+            <a
+              href="https://x.com/dreazyempire"
+              target="_blank"
+              className="px-6 py-3.5 border border-borderc rounded-full hover:border-accent hover:text-accent transition"
+            >
               X / Twitter
             </a>
-            <a href="https://t.me/dreazyempire" target="_blank" className="underline underline-offset-4 hover:text-accent transition">
+            <a
+              href="https://t.me/dreazyempire"
+              target="_blank"
+              className="px-6 py-3.5 border border-borderc rounded-full hover:border-accent hover:text-accent transition"
+            >
               Telegram
             </a>
           </div>
         </div>
       </section>
 
-      <footer className="px-6 py-8 text-center text-textsecondary text-sm border-t border-borderc">
-        © {new Date().getFullYear()} Dreazy Empire. All rights reserved.
+      {/* FOOTER */}
+      <footer className="px-6 py-10 border-t border-borderc">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-textsecondary">
+          <p className="font-semibold text-textprimary">Dreazy Empire</p>
+          <div className="flex gap-5">
+            <a href="mailto:dreazyempire@gmail.com" className="hover:text-accent transition">Email</a>
+            <a href="https://x.com/dreazyempire" target="_blank" className="hover:text-accent transition">X</a>
+            <a href="https://t.me/dreazyempire" target="_blank" className="hover:text-accent transition">Telegram</a>
+          </div>
+          <p>© 2026 Dreazy Empire. All rights reserved.</p>
+        </div>
       </footer>
     </main>
   );
